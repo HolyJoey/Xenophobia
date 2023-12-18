@@ -1,5 +1,5 @@
 -- holyjoey.
--- V1.0
+-- V1.1
 
 local regionKick = {
   [0] = "English",
@@ -27,9 +27,11 @@ menu.add_feature("Byebye " .. v, "toggle", aids.id, function(f)
 
         for i = 0, 31 do
             if player.is_player_valid(i) and i ~= player.player_id() then
-                if script.get_global_i(1886967 + 1 + (i * 609) + 10 + 121) == k then
-                    menu.notify("Getting rid of " .. player.get_player_name(i).. " for being inferior")
-                    menu.get_feature_by_hierarchy_key("online.online_players.player_"..i..".fragment_crash"):toggle() -- sends crash
+                if player.is_player_friend(i) == false then
+                    if script.get_global_i(1886967 + 1 + (i * 609) + 10 + 121) == k then
+                        menu.notify("Getting rid of " .. player.get_player_name(i).. " for being inferior")
+                        menu.get_feature_by_hierarchy_key("online.online_players.player_"..i..".fragment_crash"):toggle() -- sends crash
+                    end
                 end
             end
         end
